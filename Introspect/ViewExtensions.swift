@@ -109,7 +109,7 @@ extension View {
 
     /// Finds a `UICollectionView` from a `SwiftUI.List`, or `SwiftUI.List` child.
     public func introspectCollectionView(customize: @escaping (UICollectionView) -> ()) -> some View {
-        introspect(selector: TargetViewSelector.ancestorOrSiblingContaining, customize: customize)
+        introspect(selector: TargetViewSelector.siblingContainingOrAncestor, customize: customize)
     }
 
     /// Finds a `UICollectionView` from a `SwiftUI.List`, or `SwiftUI.List` child. You can attach this directly to the element inside the list.

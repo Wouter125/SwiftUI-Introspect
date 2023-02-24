@@ -4,26 +4,7 @@ import Introspect
 struct ContentView: View {
     @State private var selection = 0
     var body: some View {
-        TabView(selection: $selection) {
-            ListShowcase()
-                .tabItem { Text("List") }
-                .tag(0)
-                .introspectTabBarController { tabBarController in
-                    tabBarController.tabBar.layer.backgroundColor = UIColor.green.cgColor
-                }
-            ScrollViewShowcase()
-                .tabItem { Text("ScrollView") }
-                .tag(1)
-            NavigationShowcase()
-                .tabItem { Text("Navigation") }
-                .tag(2)
-            ViewControllerShowcase()
-                .tabItem { Text("ViewController") }
-                .tag(3)
-            SimpleElementsShowcase()
-                .tabItem { Text("Simple elements") }
-                .tag(4)
-        }
+        ListShowcase()
     }
 }
 
@@ -40,30 +21,30 @@ struct ListShowcase: View {
             }
 
             VStack {
-                Text("List.introspectTableView()")
+                Text("List")
                 List {
                     Text("Item 1")
                     Text("Item 2")
                 }
-                .introspectTableView { tableView in
+                .introspectCollectionView { tableView in
                     #if !os(tvOS)
-                    tableView.separatorStyle = .none
+                    print(tableView)
                     #endif
                 }
             }
 
-            VStack {
-                Text("child.introspectTableView()")
-                List {
-                    Text("Item 1")
-                    Text("Item 2")
-                        .introspectTableView { tableView in
-                            #if !os(tvOS)
-                            tableView.separatorStyle = .none
-                            #endif
-                        }
-                }
-            }
+//            VStack {
+//                Text("child.introspectTableView()")
+//                List {
+//                    Text("Item 1")
+//                    Text("Item 2")
+//                        .introspectTableView { tableView in
+//                            #if !os(tvOS)
+//                            print(tableView)
+//                            #endif
+//                        }
+//                }
+//            }
         }
 
     }
